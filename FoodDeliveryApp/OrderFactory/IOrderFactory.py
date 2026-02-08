@@ -1,8 +1,8 @@
 from FoodDeliveryApp.Cart import Cart
 from abc import ABC, abstractmethod
-from Order import Order
-from User import User
-from PaymentStrategy.IPaymentStrategy import IPaymentStrategy
+from FoodDeliveryApp.Order import Order
+from FoodDeliveryApp.User import User
+from FoodDeliveryApp.PaymentStrategy.IPaymentStrategy import IPaymentStrategy
 
 class IOrderFactory(ABC):
     @abstractmethod

@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
-from MenuItem import MenuItem
-from Restaurant import Restaurant
-from User import User
-from PaymentStrategy.IPaymentStrategy import IPaymentStrategy
+from FoodDeliveryApp.MenuItem import MenuItem
+from FoodDeliveryApp.Restaurant import Restaurant
+from FoodDeliveryApp.User import User
+from FoodDeliveryApp.PaymentStrategy.IPaymentStrategy import IPaymentStrategy
 
 class Order(ABC):
     def __init__(self, id: int, user: User, restaurant: Restaurant, items: list[MenuItem], payment_strategy: IPaymentStrategy):

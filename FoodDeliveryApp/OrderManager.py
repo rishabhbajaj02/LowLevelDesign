@@ -1,4 +1,4 @@
-from Order import Order
+from FoodDeliveryApp.Order import Order
 
 class OrderManager:
 
@@ -9,7 +9,9 @@ class OrderManager:
         return cls._instance    
 
     def __init__(self):
-        self.orders = []
+        if not hasattr(self, 'initialized'):
+            self.orders = []
+            self.initialized = True
 
     def add_order(self, order: Order):
         self.orders.append(order)

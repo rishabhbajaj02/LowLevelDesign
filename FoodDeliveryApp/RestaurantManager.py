@@ -1,4 +1,4 @@
-from Restaurant import Restaurant
+from FoodDeliveryApp.Restaurant import Restaurant
 
 class RestaurantManager:
     _instance = None
@@ -10,7 +10,9 @@ class RestaurantManager:
 
         
     def __init__(self):
-        self.restaurants = []
+        if not hasattr(self, 'initialized'):
+            self.restaurants = []
+            self.initialized = True
 
     def add_restaurant(self, restaurant: Restaurant):
         self.restaurants.append(restaurant)

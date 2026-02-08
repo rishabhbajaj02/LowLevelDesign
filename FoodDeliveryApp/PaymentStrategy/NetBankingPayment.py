@@ -1,4 +1,4 @@
-from PaymentStrategy.IPaymentStrategy import IPaymentStrategy
+from FoodDeliveryApp.PaymentStrategy.IPaymentStrategy import IPaymentStrategy
 
 class NetBankingPayment(IPaymentStrategy):
     def pay(self, amount: float):

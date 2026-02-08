@@ -1,8 +1,8 @@
-from Order import Order
-from User import User
-from Restaurant import Restaurant
-from MenuItem import MenuItem
-from PaymentStrategy.IPaymentStrategy import IPaymentStrategy
+from FoodDeliveryApp.Order import Order
+from FoodDeliveryApp.User import User
+from FoodDeliveryApp.Restaurant import Restaurant
+from FoodDeliveryApp.MenuItem import MenuItem
+from FoodDeliveryApp.PaymentStrategy.IPaymentStrategy import IPaymentStrategy
 
 class DeliveryOrder(Order):
     def __init__(self, id: int, user: User, restaurant: Restaurant, items: list[MenuItem], payment_strategy: IPaymentStrategy):

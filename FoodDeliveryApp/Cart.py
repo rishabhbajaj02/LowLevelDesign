@@ -1,5 +1,5 @@
-from MenuItem import MenuItem
-from Restaurant import Restaurant
+from FoodDeliveryApp.MenuItem import MenuItem
+from FoodDeliveryApp.Restaurant import Restaurant
 
 class Cart:
     def __init__(self, restaurant: Restaurant, items: list[MenuItem]):

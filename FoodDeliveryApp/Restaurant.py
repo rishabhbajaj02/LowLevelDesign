@@ -1,4 +1,4 @@
-from MenuItem import MenuItem
+from FoodDeliveryApp.MenuItem import MenuItem
 
 class Restaurant:
     def __init__(self, id: int, name: str, loc: str, menu_items: list[MenuItem]):
