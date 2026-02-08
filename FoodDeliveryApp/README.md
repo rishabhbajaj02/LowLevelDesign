@@ -45,6 +45,6 @@ A scalable and robust Food Delivery Application system (inspired by apps like Zo
 
 - **Facade Pattern**: The `Tomato` class hides the complexity of searching, cart management, and ordering from the client.
 - **Singleton Pattern**: `RestaurantManager` and `OrderManager` ensure a single source of truth for restaurant and order data across the application.
-- **Factory Method Pattern**: `IOrderFactory` and its implementations encapsulate the instantiation logic for different types of orders.
-- **Strategy Pattern**: `PaymentStrategy` allows the application to select different payment algorithms at runtime.
+- **Factory Method Pattern**: `IOrderFactory` and its implementations encapsulate the instantiation logic for different types of orders. This is the "inner" pattern used by the Factory strategy to decide which specific `Order` subclass to build.
+- **Strategy Pattern**: `PaymentStrategy` allows the application to select different payment algorithms at runtime. Additionally, the `checkout` method treats the `IOrderFactory` as a strategy, allowing the system to swap entire creation logic sets (e.g., Now vs. Scheduled) dynamically.
 - **Template Method**: The `Order` base class and its subclasses (`DeliveryOrder`, `PickupOrder`) allow for shared logic while specializing specific behaviors.
