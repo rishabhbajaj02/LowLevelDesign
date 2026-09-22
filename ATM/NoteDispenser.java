@@ -17,7 +17,7 @@ public class NoteDispenser implements CashDispenser{
     }
 
     @Override
-    public void dispense(int amount){
+    public synchronized void dispense(int amount){
         if(canDispense(amount)){
             int notesNeeded = amount / noteValue;
             int notesToUse = Math.min(notesNeeded, quantity);
@@ -28,11 +28,15 @@ public class NoteDispenser implements CashDispenser{
             if(remainder > 0 && this.nextDispenser != null){
                 this.nextDispenser.dispense(remainder);
             }
+
+            return true;
         }
+
+        return false;
     }
 
     @Override
-    public boolean canDispense(int amount){
+    public synchronized boolean canDispense(int amount){
         int notesNeeded = amount / noteValue;
 
         int notesToUse = Math.min(notesNeeded, quantity);

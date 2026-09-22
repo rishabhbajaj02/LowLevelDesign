@@ -16,9 +16,8 @@ public class CashDispenserManager{
     }
 
     public void dispenseCash(int amount){
-        if(firstDispenser != null && firstDispenser.canDispense(amount)){
+        if(firstDispenser != null && firstDispenser.dispense(amount)){
             System.out.println("Transaction approved for amount: " + amount);
-            firstDispenser.dispense(amount);
         }else{
             System.out.println("Cannot dispense the requested amount: " + amount);
         }

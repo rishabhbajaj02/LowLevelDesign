@@ -26,7 +26,7 @@ public class BankService{
         return false;
     }
 
-    public void balanceInquiry(String cardNumber){
+    public void checkBalance(String cardNumber){
         if(cardsToAccount.containsKey(cardNumber)){
             UserAccount userAccount = cardsToAccount.get(cardNumber);
             System.out.println("Balance: " + userAccount.getBalance());

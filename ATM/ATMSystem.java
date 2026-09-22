@@ -60,24 +60,29 @@ public class ATMSystem{
 
     public void withdraw(int amount){
         if(!bankService.canWithdraw(cardNumber, amount)){
-            bankService.withdraw(cardNumber, amount);
             return;
         }
 
-        if(!cashDispenser.canDispense(amount)){
+        if(cashDispenser.dispenseCash(amount)){
+            bankService.withdraw(cardNumber, amount);
+        }else{
             System.out.println("Cannot dispense the requested amount.");
             return;
         }
+        
+    }
 
-        cashDispenser.dispenseCash(amount);
-        bankService.withdraw(cardNumber, amount);
+    public void deposit(int amount){
+        bankService.deposit(cardNumber, amount);
     }
 
     public boolean validatePin(int pin){
         return cardNumber != null && bankService.validatePin(cardNumber, pin);
     }
 
-    public BankService getBankService(){
-        return bankService;
+    public void checkBalance(){
+        if(cardNumber != null){
+            bankService.checkBalance(cardNumber);
+        }
     }
 }
