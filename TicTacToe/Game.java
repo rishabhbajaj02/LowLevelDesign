@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class Game{
+public class Game extends Subject{
     private Board board;
 
     private Player playerX;
@@ -45,38 +45,38 @@ public class Game{
         return currentPlayer;
     }
 
-    public boolean makeMove(int row, int col){
+    public MoveResult makeMove(int row, int col){
         if(gameState == GameState.WON || gameState == GameState.DRAW){
-            System.out.println("Game is already over.");
-            return false;
+            return MoveResult.GAME_OVER;
         }
-        boolean moveMade = board.makeMove(row, col, currentPlayer.getSymbol());
+        MoveResult moveResult = board.makeMove(row, col, currentPlayer.getSymbol());
 
-        if(!moveMade){
-            return false;
+        if (moveResult != MoveResult.SUCCESS) {
+            return moveResult;
         }
 
         gameState = GameState.IN_PROGRESS;
         if(checkWin(currentPlayer)){
-            return true;
+            return MoveResult.SUCCESS;
         }else{
             currentPlayer = (currentPlayer == playerX) ? playerO : playerX;
         }
 
-        return moveMade;
+        return MoveResult.SUCCESS;
     }
 
 
-    public void printBoard(){
-        board.printBoard();
+    public String getBoardView(){
+        return board.toString();
     }
 
-    public boolean checkWin(Player player){
+    private boolean checkWin(Player player){
         
         for (GameWinningStrategy strategy : winningStrategies) {
             if (strategy.checkWin(player, board)) {
                 gameState = GameState.WON;
                 winner = player;
+                this.notifyObservers();
                 return true;
             }
         }

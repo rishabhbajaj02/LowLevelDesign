@@ -25,16 +25,18 @@ public class Board{
         return cells[i][j].getSymbol() == symbol;
     }
 
-    public boolean makeMove(int i, int j, Symbol symbol) {
-
-        if(cells[i][j].getSymbol() == null){
-            cells[i][j].setSymbol(symbol);
-            moves++;
-        }else{
-            System.out.println("Cell is already occupied");
-            return false;
+    public MoveResult makeMove(int i, int j, Symbol symbol) {
+        if (i < 0 || i >= size || j < 0 || j >= size) {
+            return MoveResult.INVALID_POSITION;
         }
-        return true;
+
+        if (cells[i][j].getSymbol() != null) {
+            return MoveResult.CELL_OCCUPIED;
+        }
+
+        cells[i][j].setSymbol(symbol);
+        moves++;
+        return MoveResult.SUCCESS;
     }
 
     public boolean isFull(){
@@ -45,23 +47,24 @@ public class Board{
         return moves;
     }
 
-    public void printBoard(){
-
+    @Override
+    public String toString(){
+        StringBuilder output = new StringBuilder();
         for(int i = 0; i < size; i++){
             for (int j = 0; j < size; j++){
 
                 Symbol symbol = cells[i][j].getSymbol();
 
                 if(symbol == null){
-                    System.out.print("_\t");
+                    output.append("_\t");
                     continue;
                 }
 
-                System.out.print(cells[i][j].getSymbol() + "\t");
+                output.append(symbol).append("\t");
             }
-            System.out.println();
+            output.append(System.lineSeparator());
         }
-
+        return output.toString();
     }
 
 }
